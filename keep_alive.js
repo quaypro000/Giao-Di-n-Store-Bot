@@ -1,10 +1,6 @@
-const express = require("express");
-const app = express();
+var http = require('http');
 
-app.get("/", (req, res) => {
-    res.send("Bot đang chạy!");
-});
-
-app.listen(3000, () => {
-    console.log("✅ Keep-alive server đang hoạt động!");
-});
+http.createServer(function (req, res) {
+  res.write("Bot đang chạy!");
+  res.end();
+}).listen(8080);
