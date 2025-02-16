@@ -1,4 +1,5 @@
-const keep_alive = require("./keep_alive.js"); // Gọi server keep-alive
+const Eris = require("eris");
+const keep_alive = require('./keep_alive.js')
 require("dotenv").config();
 const { Client, GatewayIntentBits, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 
@@ -83,4 +84,10 @@ client.on("interactionCreate", async (interaction) => {
     await interaction.update({ embeds: [updatedEmbed], components: [] });
 });
 
-client.login(process.env.TOKEN);
+const bot = new Eris(process.env.token);
+
+bot.on("error", (err) => {
+  console.error(err); // or your preferred logger
+});
+
+bot.connect();
